@@ -89,10 +89,12 @@ pub fn process<'a, 'b: 'a, C: Pod>(
         msg!("min_base_order_size and tick_size must be > 0");
         return Err(ProgramError::InvalidArgument);
     }
+
+    /*
     msg!("OK 1");
     EventQueue::<C>::check_buffer_size(&accounts.event_queue.data.borrow()).unwrap();
 
-    /*
+    
     msg!("OK 2");
     let mut market_data = accounts.market.data.borrow_mut();
     msg!("OK 3");
