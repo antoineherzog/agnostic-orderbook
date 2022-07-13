@@ -36,6 +36,8 @@ impl MarketState {
     ) -> Result<&mut Self, ProgramError> {
         let tag = bytemuck::from_bytes_mut::<u64>(&mut account_data[0..8]);
         if tag != &(expected_tag as u64) {
+            msg!("OK BUG");
+            msg!("TAG: {:?}",  tag);
             return Err(ProgramError::InvalidAccountData);
         };
         *tag = AccountTag::Market as u64;
