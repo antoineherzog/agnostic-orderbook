@@ -128,23 +128,25 @@ where
     let market_state = MarketState::from_buffer(&mut market_data, AccountTag::Market)?;
 
     check_accounts(&accounts, market_state)?;
-
+    msg!("OK 1");
     if params.limit_price % market_state.tick_size != 0 {
         return Err(AoError::InvalidLimitPrice.into());
     }
-
+    msg!("OK 2");
     let mut bids_guard = accounts.bids.data.borrow_mut();
+    msg!("OK 3");
     let mut asks_guard = accounts.asks.data.borrow_mut();
-
+    msg!("OK 4");
     let mut order_book = OrderBookState::new_safe(&mut bids_guard, &mut asks_guard)?;
-
+    msg!("OK 5");
     let mut event_queue_guard = accounts.event_queue.data.borrow_mut();
+    msg!("OK 6");
     let mut event_queue = EventQueue::from_buffer(&mut event_queue_guard, AccountTag::EventQueue)?;
-
+    msg!("OK 7");
     let order_summary =
         order_book.new_order(params, &mut event_queue, market_state.min_base_order_size)?;
     msg!("Order summary : {:?}", order_summary);
-
+    msg!("OK 8");
     Ok(order_summary)
 }
 
