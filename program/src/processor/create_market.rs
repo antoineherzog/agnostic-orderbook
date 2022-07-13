@@ -89,13 +89,13 @@ pub fn process<'a, 'b: 'a, C: Pod>(
         msg!("min_base_order_size and tick_size must be > 0");
         return Err(ProgramError::InvalidArgument);
     }
-
+    msg!("OK 1");
     EventQueue::<C>::check_buffer_size(&accounts.event_queue.data.borrow()).unwrap();
-
+    msg!("OK 2");
     let mut market_data = accounts.market.data.borrow_mut();
-
+    msg!("OK 3");
     let market_state = MarketState::from_buffer(&mut market_data, AccountTag::Uninitialized)?;
-
+    msg!("OK 4");
     *market_state = MarketState {
         event_queue: *accounts.event_queue.key,
         bids: *accounts.bids.key,
@@ -103,11 +103,11 @@ pub fn process<'a, 'b: 'a, C: Pod>(
         min_base_order_size,
         tick_size,
     };
-
+    msg!("OK 5");
     let mut event_queue_data = accounts.event_queue.data.borrow_mut();
-
+    msg!("OK 6");
     EventQueue::<C>::from_buffer(&mut event_queue_data, AccountTag::Uninitialized)?;
-
+    msg!("OK 7");
     Slab::<C>::initialize(
         &mut accounts.asks.data.borrow_mut(),
         &mut accounts.bids.data.borrow_mut(),
