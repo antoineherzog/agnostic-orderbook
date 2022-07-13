@@ -91,6 +91,8 @@ pub fn process<'a, 'b: 'a, C: Pod>(
     }
     msg!("OK 1");
     EventQueue::<C>::check_buffer_size(&accounts.event_queue.data.borrow()).unwrap();
+
+    /*
     msg!("OK 2");
     let mut market_data = accounts.market.data.borrow_mut();
     msg!("OK 3");
@@ -112,6 +114,7 @@ pub fn process<'a, 'b: 'a, C: Pod>(
         &mut accounts.asks.data.borrow_mut(),
         &mut accounts.bids.data.borrow_mut(),
     )?;
+    */
 
     Ok(())
 }
