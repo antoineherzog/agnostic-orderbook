@@ -2,6 +2,7 @@
 //! relevant accounts
 use bytemuck::{Pod, Zeroable};
 use solana_program::{program_error::ProgramError, pubkey::Pubkey};
+solana_program::msg;
 use std::mem::size_of;
 
 pub use crate::state::orderbook::{OrderSummary, ORDER_SUMMARY_SIZE};
