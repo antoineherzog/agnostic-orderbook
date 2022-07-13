@@ -123,8 +123,11 @@ pub fn process<'a, 'b: 'a, C: Pod + CallbackInfo + PartialEq>(
 where
     <C as CallbackInfo>::CallbackId: PartialEq,
 {
+    msg!("OK 0");
     accounts.perform_checks(program_id)?;
+    msg!("OK 01");
     let mut market_data = accounts.market.data.borrow_mut();
+    msg!("OK 02");
     let market_state = MarketState::from_buffer(&mut market_data, AccountTag::Market)?;
 
     check_accounts(&accounts, market_state)?;
